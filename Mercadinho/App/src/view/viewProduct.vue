@@ -5,7 +5,7 @@
         <li  v-for="lisTProduct in lisTProduct" :key="lisTProduct.product_type_ID">
         {{ lisTProduct.Type_Product_Name }}
         <div><button class="btn-altera" @click="updateShow = !updateShow ,valueProductList(lisTProduct)">Edit</button>
-        <button class="btn-delete">Delete</button></div>
+        <button class="btn-delete" @click="deleteProduct(lisTProduct)">Delete</button></div>
         </li>
     </ul>
   </div>
@@ -67,10 +67,10 @@ export default {
       })
     },
     deleteProduct(idProduct) {
-      console.log(idProduct)
-      this.$http.delete('http://localhost:3000/product/' + this.values.product_Id)
+      console.log('http://localhost:3000/product/' + idProduct.product_type_ID)
+      this.$http.delete('http://localhost:3000/product/' + idProduct.product_type_ID)
       .then(result => {
-        console.log(result.data.result)
+        console.log('alo ' + result.data.result)
       })
     },
     valueProductList(value) {

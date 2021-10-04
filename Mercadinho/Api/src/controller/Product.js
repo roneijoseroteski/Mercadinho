@@ -45,9 +45,11 @@ router.post('/registerProduct', async(req,res,next) => {
 });
 router.delete('/:id', async(req,res,next) => {
   try {
-    let value = `delete from sub_category where sub_category.product_type_ID = ${req.params.id}`;
-    const mysql = await new mysql();
-    const result = await mysql.__deleteData(value);
+    console.log('chegou delete ' + req.params.id)
+    let value = `delete from sub_category where sub_category.product_type_ID = ${req.params.id};`
+    console.log('value da query ' + value)
+    const mysql2 = await new mysql();
+    const result = await mysql2.__deleteData(value);
     next();
     res.send(result);
   } catch (err) {

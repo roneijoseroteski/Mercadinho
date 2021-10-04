@@ -88,9 +88,11 @@ module.exports = class DB {
 	}
 	async __deleteData(queryDelete) {
 		try {
+			console.log('entrou em delete')
 			await this.__createConnection();
 			const [ select ] = await this.connection.query(queryDelete)
-			return 'Produto removido com Sucesso'
+			console.log(select)
+			return { result: 'Produto removido com Sucesso'}
 		} catch (err) {
 			return err
 		} finally {
