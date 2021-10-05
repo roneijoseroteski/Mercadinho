@@ -15,10 +15,14 @@ v-show="updateShow"
 <!-- v-if="updateShow" -->
   <div class="formulario">
     <form id="formularioProductone"  autocomplete="off" @submit.prevent >
-      <fieldset>
-        <legend> Alterar de Produtos</legend>
-        <label>Nome do Produto: </label><input v-model="values.Product" type="text"><br>
-        <button class="btn_submit" @click="updateProduct()">Alterar</button>
+      <fieldset class="fieldset-formulario">
+        <legend> Alterar de Produtos</legend><br>
+        <div class="label-input">
+          <label>Nome do Produto : </label><input v-model="values.Product" type="text"><br>
+        </div>
+        <div class="div-button-altera">
+          <button class="btn_submit" @click="updateProduct()">Alterar</button>
+        </div>
       </fieldset>
     </form>
   </div>
@@ -30,7 +34,6 @@ v-show="updateShow"
 </div>
 </template>
 <script>
-
 
 export default {
     name: 'ViewProduct',
@@ -64,6 +67,14 @@ export default {
       this.$http.put('http://localhost:3000/product/' + this.values.product_Id, this.values)
       .then(response => {
         console.log('deu certo ' + response.data.result)
+        this.$bvToast.toast(`${response.data.result}`, {
+          title: 'Auterado com Sucesso',
+          solid: true,
+          autoHideDelay: 5000,
+          noCloseButton: true,
+          noAutoHide: true,
+          toaster: 'b-toaster-bottom-center'
+        })
       })
     },
     deleteProduct(idProduct) {
@@ -110,6 +121,20 @@ export default {
     padding: 6px;
     margin: 2px;
   }
+  .btn_submit {
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2px;
+  }
+  .div-button-altera {
+    display: flex;
+    justify-content: flex-end!important;
+    align-items: flex-end!important;
+  }
+  .label-input {
+    display: flex;
+    padding: 3px;
+  }
   ul li {
     background: #cce5ff;
     margin: 1px;
@@ -139,4 +164,13 @@ export default {
     justify-content: center;
     align-items: center;
   }
+  legend {
+    margin: 0 auto!important;
+    display: flex;
+    justify-content: center!important;
+    align-items: center!important;
+  }
+  /* .fieldset-formulario {
+    width: 100%;
+  } */
 </style>
