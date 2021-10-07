@@ -66,21 +66,29 @@ export default {
       // console.log('http://localhost:3000/product/',this.values, this.values.product_Id)
       this.$http.put('http://localhost:3000/product/' + this.values.product_Id, this.values)
       .then(response => {
-        console.log('deu certo ' + response.data.result)
         this.$bvToast.toast(`${response.data.result}`, {
           title: 'Auterado com Sucesso',
           solid: true,
           autoHideDelay: 5000,
           noCloseButton: true,
-          noAutoHide: true,
+          noautohde: true,
           toaster: 'b-toaster-bottom-center'
         })
+          console.log('deu certo ' + response.data.result)
       })
     },
     deleteProduct(idProduct) {
       console.log('http://localhost:3000/product/' + idProduct.product_type_ID)
       this.$http.delete('http://localhost:3000/product/' + idProduct.product_type_ID)
       .then(result => {
+        this.$bvToast.toast(`${result.data.result}`, {
+          title: 'Auterado com Sucesso',
+          solid: true,
+          autoHideDelay: 5000,
+          noCloseButton: true,
+          noautohde: true,
+          toaster: 'b-toaster-bottom-center'
+        })
         console.log('alo ' + result.data.result)
       })
     },

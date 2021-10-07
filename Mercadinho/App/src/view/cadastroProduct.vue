@@ -30,7 +30,16 @@ export default {
     registerProduct(Product) {
        console.log('cadastrado ' + Product)
        this.$http.post('http://localhost:3000/product/registerProduct',{Product : Product})
-       .then(response => { console.log(response)})
+       .then(response => {
+        this.$bvToast.toast(`${response.data.result}`, {
+          title: 'Auterado com Sucesso',
+          solid: true,
+          autoHideDelay: 5000,
+          noCloseButton: true,
+          noautohde: true,
+          toaster: 'b-toaster-bottom-center'
+        })
+       })
     }
   }
 }
